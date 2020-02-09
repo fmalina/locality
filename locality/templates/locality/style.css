@@ -1,0 +1,12 @@
+body{font-family:sans-serif}
+.locs{position:relative;height:400px}
+.loc{display:block;border:1px solid saddlebrown;position:absolute;
+    background:gold;color:#333;text-decoration:none}
+.loc__name,.loc__pop{}
+.loc:hover .loc__name{display:block}
+.loc__pop{display:none}
+.segment4{font-size:1.5rem}
+.segment3{font-size:1.3rem}
+.segment2{font-size:1rem}
+.segment1{font-size:.8rem}
+.segment0{font-size:.65rem}

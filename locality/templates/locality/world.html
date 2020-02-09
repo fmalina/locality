@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block title %}World{% endblock %}
+
+{% block content %}
+<h1>World</h1>
+<ul>
+    {% for country in countries %}
+        <li><a href="{% url 'country' country.code %}">{{ country.name }}
+            ({{ country.admin1_set.count }} / {{ country.admin2_set.count }})</a></li>
+    {% endfor %}
+</ul>
+{% endblock %}

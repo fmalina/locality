@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<p>
+    <a href="{% url 'country' loc.country.code %}">{{ loc.country.name }}</a> >
+    <a href="{% url 'aa1' loc.country.code loc.admin1.code %}">{{ loc.admin1.name }}</a> >
+    <a href="{% url 'aa2' loc.country.code loc.admin1.code loc.admin2.code %}">{{ loc.admin2.name }}</a>
+</p>
+<h1>{{ loc.name }}</h1>
+<p>Population: {{ loc.population }}<br>
+    Lat/lon: {{ loc.latitude }}, {{ loc.longitude }}</p>
+{% endblock %}

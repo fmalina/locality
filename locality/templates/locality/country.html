@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load mathfilters %}
+
+{% block content %}
+
+<p><a href="{% url 'world' %}">World</a>
+    <h1>{{ o.name }}</h1>
+    <p>{{ o.admin1_set.count }} adminareas,
+        {{ o.admin2_set.count }} adminarea 2,
+        {{ o.locality_set.count }} localities</p>
+    <p>Metropolis: {{ metropolis.name }} {{ metropolis.population }}
+    <div class="locs">
+        {% for l in o.locality_set.all %}
+                <a class="loc segment{% widthratio l.population metropolis.population 4 %}" style="
+                        width:{% widthratio l.population metropolis.population 50 %}px;
+                        height:{% widthratio l.population metropolis.population 50 %}px;
+                        border-radius:{% widthratio l.population metropolis.population 25 %}px;
+                        bottom:{{ l.latitude|sub:min_lat|mul:200 }}px;
+                        left:{{ l.longitude|sub:min_lon|mul:200 }}px"
+                   href="{% url 'loc' l.geonameid l.name|slugify %}" title="{{ l.name }}">
+                    <b class="loc__name">{{ l.name }}</b>
+                    {% if l.population %}<small class="loc__pop">{{ l.population }}</small>{% endif %}
+                </a>
+        {% endfor %}
+    </div>
+
+    <ul>
+        {% for aa1 in country.admin1_set.all %}
+            <li><a href="{% url 'aa1' country.code aa1.code %}">{{ aa1.name }} ({{ aa1.admin2_set.count }})</a></li>
+        {% endfor %}
+    </ul>
+
+{% endblock %}

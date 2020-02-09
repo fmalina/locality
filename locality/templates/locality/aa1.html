@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<p><a href="{% url 'country' aa1.country.code %}">{{ aa1.country.name }}</a>
+<h1>{{ aa1.name }}</h1>
+    <ul>
+        {% for aa2 in aa1.admin2_set.all %}
+            <li><a href="{% url 'aa2' aa1.country.code aa1.code aa2.code %}">
+                {{ aa2.name }}</a> {{ aa2.locality_set.count }} localities</li>
+        {% endfor %}
+    </ul>
+
+{% endblock %}
