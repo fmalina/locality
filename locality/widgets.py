@@ -16,7 +16,7 @@ class PointWidget(forms.MultiWidget):
     def to_point(value):
         if isinstance(value, str):
             value = geos.fromstr(value)
-        return ["%.6f" % value.x, "%.6f" % value.y]
+        return [f"{value.x:.6f}", f"{value.y:.6f}"]
 
     def decompress(self, value):
         if value:
@@ -24,7 +24,7 @@ class PointWidget(forms.MultiWidget):
         return [0, 0]
 
     def value_from_datadict(self, data, files, name):
-        lat, lon = [widget.value_from_datadict(data, files, '%s_%s' % (name, i))
+        lat, lon = [widget.value_from_datadict(data, files, f'{name}_{i}')
                     for i, widget in enumerate(self.widgets)]
         if not lat or not lon:
             return None
